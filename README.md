@@ -2,8 +2,8 @@
 This is an insight into the data collected from metacritic regarding video game reviews, both by metacritic, and metacritic users. By analysing this dataset, I will be able to identify market trends over time and game an insight on how the market has changes. Furthermore it will provide insight into the consumer assessment of video games and may guide developers into delivering games with higher ratings.
 
 ### Data Collection
-I would like to show my appreciation to Henry Luin for their scraping script used in this project. This script allowed me to pull the relevant data from metacritic into a pandas dataframe. A link to Henry's Python scraper script is below:
-https://github.com/henrylin03/video-games/blob/main/scraper.py
+I would like to show my appreciation to Henry Luin for their scraping script used in this project. This script allowed me to pull the relevant data from metacritic into a pandas dataframe. A link to Henry's Python scraper script is below:  
+https://github.com/henrylin03/video-games/blob/main/scraper.py  
 This script pulled the following:
 |Field Value |Field Type |
 |-------------|------------|
