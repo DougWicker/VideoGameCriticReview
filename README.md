@@ -1,5 +1,5 @@
 # Insights Provided by A dataset of Video Game Reviews.
-This is an insight into the data collected from metacritic regarding video game reviews, both by mnetacritic, and metacritic users.
+This is an insight into the data collected from metacritic regarding video game reviews, both by metacritic, and metacritic users.
 
 ### Dataset Introduction
 The dataset sourced from a Kaglle user - Henry Lin and is scraped using a Python (Selenium / BeautifulSoup) script (GitHub - scraper.py), and cleaned using a combination of pandas and sql (GitHub - Jupyter Notebook].
