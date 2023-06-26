@@ -5,9 +5,14 @@ This is an insight into the data collected from metacritic regarding video game 
 I would like to show my appreciation to Henry Luin for their scraping script used in this project. This script allowed me to pull the relevant data from metacritic into a pandas dataframe. A link to Henry's Python scraper script is below:
 https://github.com/henrylin03/video-games/blob/main/scraper.py
 This script pulled the following:
-| Field Value | Field Type |
-| name | String |
-| platform | String |
+|Field Value |Field Type |
+|-------------|------------|
+| Name | String |
+| Platform | String |
+| Release Date | String |
+| Summary | String |
+| Metascore | Integer |
+| User Score | Float |
 
 
 The dataset sourced from a Kaglle user - Henry Lin and is scraped using a Python (Selenium / BeautifulSoup) script (GitHub - scraper.py), and cleaned using a combination of pandas and sql (GitHub - Jupyter Notebook].
