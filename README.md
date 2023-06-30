@@ -48,19 +48,19 @@ Next I imported the csv file using pgAdmin's import/export feature.
 #### Summary of Table
 The below demonstrates the table by limiting the output to the first 10 records ordered by idn:  
 ```
-SELECT *
-FROM video_game_reviews
+SELECT(*)
+FROM video_game_reviews,
 ORDER BY idn ASC
-LIMIT 10;
+LIMIT 10
 ```
-![image](https://github.com/TupperwareBox/VideoGameCriticReview/assets/134697309/b37573bc-8f12-4ad7-95f7-f6a973b06447)
+![image](https://github.com/TupperwareBox/VideoGameCriticReview/blob/a0c04ef02e09d44b58a934428109f7361c2ee320/Images/Pre-Cleaning%20First%2010%20Records.png)
   
 The below demonstrates the total number of records held within the table:  
 ```
 SELECT COUNT(*)
 FROM video_game_reviews;
 ```
-![image](https://github.com/TupperwareBox/VideoGameCriticReview/assets/134697309/40b01d71-2347-44f7-867e-d988a28290dc)
+![image](https://github.com/TupperwareBox/VideoGameCriticReview/blob/a0c04ef02e09d44b58a934428109f7361c2ee320/Images/Pre-Cleaning%20Number%20of%20Records.png)
 
   
 The below demonstrates the total number of records held within the table grouped by their release platform:  
@@ -69,7 +69,7 @@ SELECT platform, COUNT(*)
 FROM video_game_reviews
 GROUP BY platform;
 ```
-![image](https://github.com/TupperwareBox/VideoGameCriticReview/assets/134697309/0f695cb8-cc13-4a8e-96da-537c876e1634)
+![image](https://github.com/TupperwareBox/VideoGameCriticReview/blob/a0c04ef02e09d44b58a934428109f7361c2ee320/Images/Pre-Cleaning%20by%20Platform.png)
 
 #### Data Cleaning
 
@@ -108,14 +108,34 @@ WHERE metascore = 'tbd';
 UPDATE video_game_reviews
 SET user_score = NULL
 WHERE user_score = 'tbd';
+
+ALTER TABLE video_game_reviews
+ALTER COLUMN metascore TYPE INT USING metascore::INT;
+
+ALTER TABLE video_game_reviews
+ALTER COLUMN user_score TYPE DECIMAL(3, 1) USING user_score::DECIMAL(3,1);
 ```
 
 Next, the release date column needs to be converted to a Date data type:
 ```
 UPDATE video_game_reviews
 SET release_date = TO_DATE(release_date, 'Month DD, YYYY');
+
+ALTER TABLE video_game_reviews
+ALTER COLUMN release_date TYPE DATE USING release_date::DATE;
 ```
 
+#### Summary of Cleaned Data
+Now that the data has been cleaned, we can get some headline figures:
+
+The total number of records post clean:
+![image](https://github.com/TupperwareBox/VideoGameCriticReview/blob/8044269e9756ed0daac9e860e8320f638ff5b8cf/Images/Cleaned%20Total.png)
+
+Below are the top 20 video games ordered by their metascore:
+![image](https://github.com/TupperwareBox/VideoGameCriticReview/blob/8044269e9756ed0daac9e860e8320f638ff5b8cf/Images/Cleaned%20Top%2020%20by%20metascore.png)
+
+Below are the top 20 video games ordered by their user score:
+![image](https://github.com/TupperwareBox/VideoGameCriticReview/blob/8044269e9756ed0daac9e860e8320f638ff5b8cf/Images/Cleaned%20Top%2020%20by%20user%20score.png)
 
 ### Analysis & Insights
 #### Insight 1: Average Rating over Time vs. Number of Games Released/Reviewed
