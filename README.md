@@ -1,4 +1,4 @@
-![image](https://github.com/TupperwareBox/VideoGameCriticReview/assets/134697309/a30d868b-5563-4486-aac2-1d5db5f766b1)# Insights Provided by A dataset of Video Game Reviews.
+# Insights Provided by A dataset of Video Game Reviews.
 This is an insight into the data collected from metacritic regarding video game reviews, both by metacritic, and metacritic users. By analysing this dataset, I will be able to identify market trends over time and game an insight on how the market has changes. Furthermore it will provide insight into the consumer assessment of video games and may guide developers into delivering games with higher ratings.
 
 ### Potential Insights
@@ -54,8 +54,33 @@ ORDER BY idn ASC
 LIMIT 10;
 '''
 ![image](https://github.com/TupperwareBox/VideoGameCriticReview/assets/134697309/b37573bc-8f12-4ad7-95f7-f6a973b06447)
+  
+The below demonstrates the total number of records held within the table:  
+'''
+SELECT COUNT(*)
+FROM video_game_reviews;
+'''
+![image](https://github.com/TupperwareBox/VideoGameCriticReview/assets/134697309/40b01d71-2347-44f7-867e-d988a28290dc)
 
+  
+The below demonstrates the total number of records held within the table grouped by their release platform:  
+'''
+SELECT platform, COUNT(*)
+FROM video_game_reviews
+GROUP BY platform;
+'''
+![image](https://github.com/TupperwareBox/VideoGameCriticReview/assets/134697309/0f695cb8-cc13-4a8e-96da-537c876e1634)
 
+#### Data Cleaning
+
+To start with, I can remove both IOS games and Stadia games as I am only interested in assessing games for home video consoles, handheld consoles & PC.
+'''
+DELETE FROM video_game_reviews
+WHERE platform IN ('iOS', 'Stadia');
+'''
+
+I also want to asign a Platfor Type to each of the consoles. For example, the PS2, PS3, Xbox One etc. are home video consoles, whilst the Nintendo DS, 3DS & Switch are handheld consoles.
+'''
 
 ### Analysis & Insights
 #### Insight 1: Average Rating over Time vs. Number of Games Released/Reviewed
