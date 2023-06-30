@@ -79,6 +79,12 @@ DELETE FROM video_game_reviews
 WHERE platform IN ('iOS', 'Stadia');
 '''
 
+I also want to remove any records that have neither a Metascore nor a User Score:
+'''
+DELETE FROM video_game_reviews
+WHERE metascore = 'tbd' AND user_score = 'tbd';
+'''
+
 I also want to asign a Platform Type to each of the consoles. For example, the PS2, PS3, Xbox One etc. are home video consoles, whilst the Nintendo DS, 3DS & Switch are handheld consoles.  
 '''
 ALTER TABLE video_game_reviews
@@ -92,6 +98,24 @@ SET platform_type = CASE
 	ELSE 'Other'
 END;  
 '''
+
+I also need to convert any 'tbd' values to Null as to allow me to assign the numerical tada types to the metascore and user_score columns.
+''' 
+UPDATE video_game_reviews
+SET metascore = NULL
+WHERE metascore = 'tbd';
+
+UPDATE video_game_reviews
+SET user_score = NULL
+WHERE user_score = 'tbd';
+'''
+
+Next, the release date column needs to be converted to a Date data type:
+'''
+UPDATE video_game_reviews
+SET release_date = TO_DATE(release_date, 'Month DD, YYYY');
+'''
+
 
 ### Analysis & Insights
 #### Insight 1: Average Rating over Time vs. Number of Games Released/Reviewed
