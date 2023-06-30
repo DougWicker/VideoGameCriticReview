@@ -23,9 +23,7 @@ This script pulled the following:
 | Metascore | Integer |
 | User Score | Float |
 
-Summary of data here
-
-### Data Cleaning & Preperation
+### Data Preparation & Cleaning
 
 ### Analysis & Insights
 #### Insight 1: Average Rating over Time vs. Number of Games Released/Reviewed
