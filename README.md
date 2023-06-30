@@ -79,7 +79,18 @@ DELETE FROM video_game_reviews
 WHERE platform IN ('iOS', 'Stadia');
 '''
 
-I also want to asign a Platfor Type to each of the consoles. For example, the PS2, PS3, Xbox One etc. are home video consoles, whilst the Nintendo DS, 3DS & Switch are handheld consoles.
+I also want to asign a Platform Type to each of the consoles. For example, the PS2, PS3, Xbox One etc. are home video consoles, whilst the Nintendo DS, 3DS & Switch are handheld consoles.  
+'''
+ALTER TABLE video_game_reviews
+ADD COLUMN platform_type VARCHAR(50);
+
+UPDATE video_game_reviews
+SET platform_type = CASE
+    WHEN platform IN ('Dreamcast', 'GameCube', 'Nintendo 64', 'PlayStation','PlayStation 2', 'PlayStation 3', 'PlayStation 4', 'PlayStation 5', 'Wii', 'Wii U', 'Xbox', 'Xbox 360', 'Xbox One', 'Xbox Series X') THEN 'Home Console'
+    WHEN platform IN ('3DS', 'Switch', 'DS', 'Game Boy Advance', 'Playstation Vita', 'PSP') THEN 'Handheld Console'
+	When platform IN ('PC') Then 'PC'
+	ELSE 'Other'
+END;  
 '''
 
 ### Analysis & Insights
