@@ -25,12 +25,12 @@ This script pulled the following:
 
 ### Data Preparation & Cleaning
 I started by creating a new PostgreSQL database using pgAdmin:  
-'''
+```
 CREATE DATABASE video_game_reviewsdb;  
-'''
+```
 
 Then I created a table named video_game_reviews with column names based on the scraped data:  
-'''
+```
 CREATE TABLE video_game_reviews (
   idn INT,
   game_name VARCHAR(150),
@@ -40,53 +40,53 @@ CREATE TABLE video_game_reviews (
 	metascore VARCHAR(50),
 	user_score VARCHAR(50)
 );  
-'''
+```
 You will notice that release_date, metascore & user_score are currently all the variable-character length data type. This is because release_date is needs to be converted to a date data type and metascore and user_score have 'tbd' values that need to be converted / removed.  
 
 Next I imported the csv file using pgAdmin's import/export feature.  
 
 #### Summary of Table
 The below demonstrates the table by limiting the output to the first 10 records ordered by idn:  
-'''
+```
 SELECT *
 FROM video_game_reviews
 ORDER BY idn ASC
 LIMIT 10;
-'''
+```
 ![image](https://github.com/TupperwareBox/VideoGameCriticReview/assets/134697309/b37573bc-8f12-4ad7-95f7-f6a973b06447)
   
 The below demonstrates the total number of records held within the table:  
-'''
+```
 SELECT COUNT(*)
 FROM video_game_reviews;
-'''
+```
 ![image](https://github.com/TupperwareBox/VideoGameCriticReview/assets/134697309/40b01d71-2347-44f7-867e-d988a28290dc)
 
   
 The below demonstrates the total number of records held within the table grouped by their release platform:  
-'''
+```
 SELECT platform, COUNT(*)
 FROM video_game_reviews
 GROUP BY platform;
-'''
+```
 ![image](https://github.com/TupperwareBox/VideoGameCriticReview/assets/134697309/0f695cb8-cc13-4a8e-96da-537c876e1634)
 
 #### Data Cleaning
 
 To start with, I can remove both IOS games and Stadia games as I am only interested in assessing games for home video consoles, handheld consoles & PC.
-'''
+```
 DELETE FROM video_game_reviews
 WHERE platform IN ('iOS', 'Stadia');
-'''
+```
 
 I also want to remove any records that have neither a Metascore nor a User Score:
-'''
+```
 DELETE FROM video_game_reviews
 WHERE metascore = 'tbd' AND user_score = 'tbd';
-'''
+```
 
 I also want to asign a Platform Type to each of the consoles. For example, the PS2, PS3, Xbox One etc. are home video consoles, whilst the Nintendo DS, 3DS & Switch are handheld consoles.  
-'''
+```
 ALTER TABLE video_game_reviews
 ADD COLUMN platform_type VARCHAR(50);
 
@@ -97,10 +97,10 @@ SET platform_type = CASE
 	When platform IN ('PC') Then 'PC'
 	ELSE 'Other'
 END;  
-'''
+```
 
 I also need to convert any 'tbd' values to Null as to allow me to assign the numerical tada types to the metascore and user_score columns.
-''' 
+```
 UPDATE video_game_reviews
 SET metascore = NULL
 WHERE metascore = 'tbd';
@@ -108,13 +108,13 @@ WHERE metascore = 'tbd';
 UPDATE video_game_reviews
 SET user_score = NULL
 WHERE user_score = 'tbd';
-'''
+```
 
 Next, the release date column needs to be converted to a Date data type:
-'''
+```
 UPDATE video_game_reviews
 SET release_date = TO_DATE(release_date, 'Month DD, YYYY');
-'''
+```
 
 
 ### Analysis & Insights
