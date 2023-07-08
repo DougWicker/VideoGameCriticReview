@@ -1,8 +1,8 @@
 # Insights Provided by A dataset of Video Game Reviews.
-This is an insight into the data collected from metacritic regarding video game reviews, both by metacritic, and metacritic users. By analysing this dataset, I will be able to identify market trends over time and game an insight on how the market has changes. Furthermore it will provide insight into the consumer assessment of video games and may guide developers into delivering games with higher ratings.
+This is an insight into the data collected from Metacritic regarding video game reviews, both by Metacritic, and Metacritic users. By analysing this dataset, I will be able to identify market trends over time and gain insight into how the market has changed. Furthermore, it will provide insight into the consumer assessment of video games and may guide developers into delivering games with higher ratings.
 
 ### Potential Insights
-Below is a list of potenital insights that could me satsfied by reviewing this dataset:
+Below is a list of potential insights that could be satisfied by reviewing this dataset:
 
 1. How has the average rating changed over time vs number of games released/reviewed?
 2. For games that are released on multiple systems, which system has the highest average rating?
@@ -11,7 +11,7 @@ Below is a list of potenital insights that could me satsfied by reviewing this d
 5. Which system has the highest user / meta score ratio?
 
 ### Data Collection
-I would like to show my appreciation to Henry Luin for their scraping script used in this project. This script allowed me to pull the relevant data from metacritic into a pandas dataframe. A link to Henry's Python scraper script is below:  
+I would like to show my appreciation to Henry Luin for their scraping script used in this project. This script allowed me to pull the relevant data from Metacritic into a pandas dataframe. A link to Henry's Python scraper script is below:  
 https://github.com/henrylin03/video-games/blob/main/scraper.py  
 This script pulled the following:
 |Field Value |Field Type |
@@ -41,9 +41,9 @@ CREATE TABLE video_game_reviews (
 	user_score VARCHAR(50)
 );  
 ```
-You will notice that release_date, metascore & user_score are currently all the variable-character length data type. This is because release_date is needs to be converted to a date data type and metascore and user_score have 'tbd' values that need to be converted / removed.  
+You will notice that release_date, Metascore & user_score are currently all the variable-character length data type. This is because release_date needs to be converted to a date data type and metascore and user_score have 'tbd' values that need to be converted / removed.  
 
-Next I imported the csv file using pgAdmin's import/export feature.  
+Next, I imported the CSV file using pgAdmin's import/export feature.  
 
 #### Summary of Table
 The below demonstrates the table by limiting the output to the first 10 records ordered by idn:  
@@ -85,7 +85,7 @@ DELETE FROM video_game_reviews
 WHERE metascore = 'tbd' AND user_score = 'tbd';
 ```
 
-I also want to asign a Platform Type to each of the consoles. For example, the PS2, PS3, Xbox One etc. are home video consoles, whilst the Nintendo DS, 3DS & Switch are handheld consoles.  
+I also want to assign a Platform Type to each of the consoles. For example, the PS2, PS3, Xbox One etc. are home video consoles, whilst the Nintendo DS, 3DS & Switch are handheld consoles.  
 ```
 ALTER TABLE video_game_reviews
 ADD COLUMN platform_type VARCHAR(50);
@@ -99,7 +99,7 @@ SET platform_type = CASE
 END;  
 ```
 
-I also need to convert any 'tbd' values to Null as to allow me to assign the numerical tada types to the metascore and user_score columns.
+I also need to convert any 'tbd' values to Null to allow me to assign the numerical tada types to the Metascore and user_score columns.
 ```
 UPDATE video_game_reviews
 SET metascore = NULL
@@ -128,10 +128,10 @@ ALTER COLUMN release_date TYPE DATE USING release_date::DATE;
 #### Summary of Cleaned Data
 Now that the data has been cleaned, we can get some headline figures:
 
-The total number of records post clean:
+The total number of records post-clean:
 ![image](https://github.com/TupperwareBox/VideoGameCriticReview/blob/8044269e9756ed0daac9e860e8320f638ff5b8cf/Images/Cleaned%20Total.png)
 
-Below are the top 20 video games ordered by their metascore:
+Below are the top 20 video games ordered by Metascore:
 ![image](https://github.com/TupperwareBox/VideoGameCriticReview/blob/8044269e9756ed0daac9e860e8320f638ff5b8cf/Images/Cleaned%20Top%2020%20by%20metascore.png)
 
 Below are the top 20 video games ordered by their user score:
