@@ -15,7 +15,7 @@ I would like to show my appreciation to Henry Luin for their scraping script use
 https://github.com/henrylin03/video-games/blob/main/scraper.py  
 This script pulled the following:
 |Field Value |Field Type |
-|-------------|------------|
+|:-------------|:------------|
 | Name | String |
 | Platform | String |
 | Release Date | String |
@@ -191,15 +191,12 @@ The same can be done for each platform type:
 From this we can determine how the average scores compare for each platform type.
 
 |Platform Type|Total Number of Reviews |Average Metascore |Average User Score |
-|-------------|------------|------------|------------|
+|-------------:|:------------:|:------------:|:------------:|
 |Home Consoles | 17709 | 69.4 | 6.70 |
 |Handheld Consoles | 7408 | 68.7 | 6.94 |
-|PC | 13894 | 70.94 | 6.73 |
-|-------------|------------|------------|------------|
-|Total | 39011 | 69.7 | 6.75 |
-
-
-
+|PC | 13894 | 70.9 | 6.73 |
+|**Total**|**39011**|**69.7**|**6.75**|
+This tells us that PC game reviews have the highest average Metascore whilst Handheld Console game reviews have the highest average User Score.
 
 #### Insight 1: Average Rating over Time vs. Number of Games Released/Reviewed
 Plot the average rating of video games over time.  
