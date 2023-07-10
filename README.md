@@ -1,6 +1,8 @@
 # Insights Provided by A dataset of Video Game Reviews.
 This is an insight into the data collected from Metacritic regarding video game reviews, both by Metacritic, and Metacritic users. By analysing this dataset, I will be able to identify market trends over time and gain insight into how the market has changed. Furthermore, it will provide insight into the consumer assessment of video games and may guide developers into delivering games with higher ratings.
 
+[Here is a summary of terms used throughout this publication.](https://github.com/DougWicker/VideoGameCriticReview/blob/main/SummaryofTerms.md)
+
 ### Potential Insights
 Below is a list of potential insights that could be satisfied by reviewing this dataset:
 
@@ -11,8 +13,7 @@ Below is a list of potential insights that could be satisfied by reviewing this 
 5. Which system has the highest user / meta score ratio?
 
 ### Data Collection
-I would like to show my appreciation to Henry Luin for their scraping script used in this project. This script allowed me to pull the relevant data from Metacritic into a pandas dataframe. A link to Henry's Python scraper script is below:  
-https://github.com/henrylin03/video-games/blob/main/scraper.py  
+I would like to show my appreciation to Henry Luin for their scraping script used in this project. This script allowed me to pull the relevant data from Metacritic into a pandas dataframe. [Here is a link to Henry's Python scraper script.](https://github.com/henrylin03/video-games/blob/main/scraper.py)  
 This script pulled the following:
 |Field Value |Field Type |
 |:-------------|:------------|
@@ -188,7 +189,7 @@ The same can be done for each platform type:
 ![image](https://github.com/DougWicker/VideoGameCriticReview/assets/134697309/bec84775-0707-496a-9d82-3f2ecca0593d)
 ![image](https://github.com/DougWicker/VideoGameCriticReview/assets/134697309/247552af-e2ce-44d7-91c3-7ee60446a4b0)
 
-From this we can determine how the average scores compare for each platform type.
+From this we can determine how the average scores for each platform type compare.
 
 |Platform Type|Total Number of Reviews |Average Metascore |Average User Score |
 |-------------:|:------------:|:------------:|:------------:|
