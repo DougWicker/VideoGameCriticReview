@@ -25,12 +25,12 @@ This script pulled the following:
 
 ### Data Preparation & Cleaning
 I started by creating a new PostgreSQL database using pgAdmin:  
-```
+```SQL
 CREATE DATABASE video_game_reviewsdb;  
 ```
 
 Then I created a table named video_game_reviews with column names based on the scraped data:  
-```
+```SQL
 CREATE TABLE video_game_reviews (
   idn INT,
   game_name VARCHAR(150),
@@ -47,7 +47,7 @@ Next, I imported the CSV file using pgAdmin's import/export feature.
 
 #### Summary of Table
 The below demonstrates the table by limiting the output to the first 10 records ordered by idn:  
-```
+```SQL
 SELECT(*)
 FROM video_game_reviews,
 ORDER BY idn ASC
@@ -56,7 +56,7 @@ LIMIT 10
 ![image](https://github.com/TupperwareBox/VideoGameCriticReview/blob/a0c04ef02e09d44b58a934428109f7361c2ee320/Images/Pre-Cleaning%20First%2010%20Records.png)
   
 The below demonstrates the total number of records held within the table:  
-```
+```SQL
 SELECT COUNT(*)
 FROM video_game_reviews;
 ```
@@ -64,7 +64,7 @@ FROM video_game_reviews;
 
   
 The below demonstrates the total number of records held within the table grouped by their release platform:  
-```
+```SQL
 SELECT platform, COUNT(*)
 FROM video_game_reviews
 GROUP BY platform;
@@ -74,33 +74,33 @@ GROUP BY platform;
 #### Data Cleaning
 
 To start with, I can remove both IOS games and Stadia games as I am only interested in assessing games for home video consoles, handheld consoles & PC.
-```
+```SQL
 DELETE FROM video_game_reviews
 WHERE platform IN ('iOS', 'Stadia');
 ```
 
 I also want to remove any records that have neither a Metascore nor a User Score:
-```
+```SQL
 DELETE FROM video_game_reviews
 WHERE metascore = 'tbd' AND user_score = 'tbd';
 ```
 
 I also want to assign a Platform Type to each of the consoles. For example, the PS2, PS3, Xbox One etc. are home video consoles, whilst the Nintendo DS, 3DS & Switch are handheld consoles.  
-```
+```SQL
 ALTER TABLE video_game_reviews
 ADD COLUMN platform_type VARCHAR(50);
 
 UPDATE video_game_reviews
 SET platform_type = CASE
-    WHEN platform IN ('Dreamcast', 'GameCube', 'Nintendo 64', 'PlayStation','PlayStation 2', 'PlayStation 3', 'PlayStation 4', 'PlayStation 5', 'Wii', 'Wii U', 'Xbox', 'Xbox 360', 'Xbox One', 'Xbox Series X') THEN 'Home Console'
-    WHEN platform IN ('3DS', 'Switch', 'DS', 'Game Boy Advance', 'PlayStation Vita', 'PSP') THEN 'Handheld Console'
+	WHEN platform IN ('Dreamcast', 'GameCube', 'Nintendo 64', 'PlayStation','PlayStation 2', 'PlayStation 3', 'PlayStation 4', 'PlayStation 5', 'Wii', 'Wii U', 'Xbox', 'Xbox 360', 'Xbox One', 'Xbox Series X') THEN 'Home Console'
+	WHEN platform IN ('3DS', 'Switch', 'DS', 'Game Boy Advance', 'PlayStation Vita', 'PSP') THEN 'Handheld Console'
 	When platform IN ('PC') Then 'PC'
 	ELSE 'Other'
 END;  
 ```
 
 I also need to convert any 'tbd' values to Null to allow me to assign the numerical tada types to the Metascore and user_score columns.
-```
+```SQL
 UPDATE video_game_reviews
 SET metascore = NULL
 WHERE metascore = 'tbd';
@@ -138,6 +138,69 @@ Below are the top 20 video games ordered by their user score:
 ![image](https://github.com/TupperwareBox/VideoGameCriticReview/blob/8044269e9756ed0daac9e860e8320f638ff5b8cf/Images/Cleaned%20Top%2020%20by%20user%20score.png)
 
 ### Analysis & Insights
+
+#### Average Ratings by Console Type & Console.
+The overall average ratings can be determined:
+```python
+user_score_mean = data['user_score'].mean()
+metascore_mean = data['metascore'].mean()
+totalcount = data['idn'].count()
+```
+There is a total of 39011 video game reviews post cleaning.
+The mean of all the user score records is 6.75 / 10.
+The mean of all the Metascore records is 69.7 / 10.
+This demonstrates that the average score given by Metascore is 3.2% higher than the average score given by the users.
+
+A scatter graph depicting the Metascore vs the user score for each game review can be drafted using matplotlib.
+
+```python
+sns.set(style = "ticks")
+sns.scatterplot(
+    data=data,
+    x="user_score",
+    y="metascore",
+    marker="x",
+    color="#FF3D36",
+    alpha=0.07,
+    s=30,
+)
+sns.regplot(
+    data=data, 
+    x="user_score", 
+    y="metascore", 
+    scatter=False, 
+    line_kws={"color": "#595959"},
+)
+
+totalaveragemetascore = data['metascore'].mean()
+totalaverageuser_score = data['user_score'].mean()
+
+plt.axvline(totalaverageuser_score, color='blue', label='Average User Score')
+plt.axhline(totalaveragemetascore, color='green', label='Average Metascore')
+
+plt.legend()
+plt.show()
+```
+![image](https://github.com/DougWicker/VideoGameCriticReview/assets/134697309/ea0b2365-42ed-43b1-8a1a-7311e037d3d4)
+
+The same can be done for each platform type:  
+![image](https://github.com/DougWicker/VideoGameCriticReview/assets/134697309/8b6854c8-2114-4a33-a688-8fc54fd3b703)
+![image](https://github.com/DougWicker/VideoGameCriticReview/assets/134697309/bec84775-0707-496a-9d82-3f2ecca0593d)
+![image](https://github.com/DougWicker/VideoGameCriticReview/assets/134697309/247552af-e2ce-44d7-91c3-7ee60446a4b0)
+
+From this we can determine how the average scores compare for each platform type.
+
+|Platform Type|Total Number of Reviews |Average Metascore |Average User Score |
+|-------------|------------|------------|------------|
+|Home Consoles | 17709 | 69.4 | 6.70 |
+|Handheld Consoles | 7408 | 68.7 | 6.94 |
+|PC | 13894 | 70.94 | 6.73 |
+|-------------|------------|------------|------------|
+|Total | 39011 | 69.7 | 6.75 |
+
+
+
+
 #### Insight 1: Average Rating over Time vs. Number of Games Released/Reviewed
 Plot the average rating of video games over time.  
 Analyze the relationship between the average rating and the number of games released/reviewed.  
