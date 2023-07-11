@@ -194,8 +194,8 @@ From this we can determine how the average scores for each platform type compare
 |Platform Type|Total Number of Reviews |Average Metascore |Average User Score |
 |-------------:|:------------:|:------------:|:------------:|
 |Home Consoles | 17709 | 69.4 | 6.70 |
-|Handheld Consoles | 7408 | 68.7 | 6.94 |
-|PC | 13894 | 70.9 | 6.73 |
+|Handheld Consoles | 7408 | 68.7 | **6.94** |
+|PC | 13894 | **70.9** | 6.73 |
 |**Total**|**39011**|**69.7**|**6.75**|  
 
 This tells us that PC game reviews have the highest average Metascore whilst Handheld Console game reviews have the highest average User Score.
