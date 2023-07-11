@@ -118,7 +118,7 @@ ALTER COLUMN user_score TYPE DECIMAL(3, 1) USING user_score::DECIMAL(3,1);
 ```
 
 Next, the release date column needs to be converted to a Date data type:
-```
+```SQL
 UPDATE video_game_reviews
 SET release_date = TO_DATE(release_date, 'Month DD, YYYY');
 
