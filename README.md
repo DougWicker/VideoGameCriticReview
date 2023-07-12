@@ -200,6 +200,15 @@ From this we can determine how the average scores for each platform type compare
 
 This tells us that PC game reviews have the highest average Metascore whilst Handheld Console game reviews have the highest average User Score.
 
+Below is a boxplot that demonstrates the spread of User Scores by platform ordered by the mean score.
+
+![image](https://github.com/DougWicker/VideoGameCriticReview/assets/134697309/fe8bff9a-c22e-432a-a9b3-8314283b23ef)
+
+This demonstrates that platforms with the highest median User Scores are Dreamcast (8.0), Playstation 2 (7.9), Playstation (7.85) and Nintendo 64 (7.8). Whilst those with the lowest median User Scores are Playstation 4 (6.4), Playstation 5 (6.8) and Xbox One (6.8).
+Points to talk about - age difference of platforms (rose tinted glasses?) - number of games / reviews per platform - iqr of old platforms vs new, could this be because developing and selling games is more accecssbile (more inexperienced developers)
+
+
+
 #### Insight 1: Average Rating over Time vs. Number of Games Released/Reviewed
 Plot the average rating of video games over time.  
 Analyze the relationship between the average rating and the number of games released/reviewed.  
