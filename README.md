@@ -189,7 +189,7 @@ The same can be done for each platform type:
 ![image](https://github.com/DougWicker/VideoGameCriticReview/assets/134697309/bec84775-0707-496a-9d82-3f2ecca0593d)
 ![image](https://github.com/DougWicker/VideoGameCriticReview/assets/134697309/247552af-e2ce-44d7-91c3-7ee60446a4b0)
 
-From this we can determine how the average scores for each platform type compare.
+We can determine how the average scores for each platform type compare.
 
 |Platform Type|Total Number of Reviews |Average Metascore |Average User Score |
 |-------------:|:------------:|:------------:|:------------:|
@@ -204,11 +204,20 @@ Below is a boxplot that demonstrates the spread of User Scores by platform order
 
 ![image](https://github.com/DougWicker/VideoGameCriticReview/assets/134697309/fe8bff9a-c22e-432a-a9b3-8314283b23ef)
 
-This demonstrates that platforms with the highest median User Scores are Dreamcast (8.0), Playstation 2 (7.9), Playstation (7.85) and Nintendo 64 (7.8). Whilst those with the lowest median User Scores are Playstation 4 (6.4), Playstation 5 (6.8) and Xbox One (6.8).
+The platforms with the highest median User Scores are Dreamcast (8.0), Playstation 2 (7.9), Playstation (7.85) and Nintendo 64 (7.8). Whilst those with the lowest median User Scores are Playstation 4 (6.4), Playstation 5 (6.8) and Xbox One (6.8).
 Points to talk about - age difference of platforms (rose tinted glasses?) - number of games / reviews per platform - iqr of old platforms vs new, could this be because developing and selling games is more accecssbile (more inexperienced developers)
 
+Below is a line / bar graph combo showing the change in average review score for each release year.
+
+![image](https://github.com/DougWicker/VideoGameCriticReview/assets/134697309/4c50f69b-ada4-4076-9b05-e1e0d31676f4)
 
 
+The average User Score reached its peak in 1999, with a rating of 8.2, but has generally declined since then. In contrast, the average Metascore peaked in 1996 at 8.4 before experiencing a decline to 6.5 in 2007. However, the Metascore has been steadily increasing over the years, reaching 7.3 in 2022 and 7.4 in 2023 (so far). The significant drop in average scores observed in the year 2000 could be attributed to various factors, including the transition to new console generations (PS2 and Dreamcast), the rise of online multiplayer games, and potential challenges in quality control due to the fast-paced evolution of the game development industry at the time.
+
+These trends indicate a possible correlation between the high average review scores of the late 90s and the relatively low number of video game releases during that period. The high review scores could be attributed to either the presence of more specialized professionals among developers who created superior games or the limited selection of video games, leading to a heightened perception of their quality. Additionally, the retrospective nature of reviews for games released before Metacritic's founding in 2001 introduces the possibility of a "rose-tinted glasses" effect, where nostalgic sentiments may have influenced perceptions of game quality.
+
+The upward trend in average Metascore ratings since 2021 may be indicative of an overall improvement in game quality and critical reception. This could be a result of advancements in technology and game development practices, leading to more polished and refined gaming experiences. However, there appears to be no upward trend in the average User Score ratings since 2021. Alternatively, the increasing popularity of remastered games could contribute to the higher average Metascores, as these releases often enhance and improve upon existing high-scoring titles, garnering positive reviews from both critics and players. However, it is important to consider other factors such as changes in review methodologies or shifts in consumer preferences that could also influence the trend.
+ 
 #### Insight 1: Average Rating over Time vs. Number of Games Released/Reviewed
 Plot the average rating of video games over time.  
 Analyze the relationship between the average rating and the number of games released/reviewed.  
@@ -218,6 +227,22 @@ Identify games that have been released on multiple platforms.
 Calculate the average rating for each platform.  
 Determine which platform has the highest average rating for these multi-platform games.  
 Discuss possible reasons for the observed differences.  
+
+|Game|Platform |Average User Score |
+|-------------:|:------------:|:------------:|
+|Game 1 | Xbox | 69.4 |
+|Game 1 | PC| 34.4 |
+|Game 2 | PC | 68.7 | 
+|Game 3 | PS3 |70.9 |
+|Game 3 | Xbox |74.0 |
+
+|Game|Xbox |PS3 |PC|
+|------------:|:----------:|:------------:|:------------:|
+|Game 1 | 69.4 | NULL | 34.4|
+|Game 2 | Null |Null | 68.7 | 
+|Game 3 | 74.0 |70.9 |Null|
+
+
 #### Insight 3: Sentiment Analysis of Game Summaries
 Perform sentiment analysis on game summaries using natural language processing techniques.  
 Identify the most common sentiment expressed in the game summaries (positive, negative, neutral).  
