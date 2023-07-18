@@ -6,11 +6,11 @@ This is an insight into the data collected from Metacritic regarding video game 
 ### Potential Insights
 Below is a list of potential insights that could be satisfied by reviewing this dataset:
 
-1. How has the average rating changed over time vs number of games released/reviewed?
-2. For games that are released on multiple systems, which system has the highest average rating?
-3. Using Sentiment Analysis, what game summary is most common? What game summary gets the best reviews?
-4. Can I add other video game review sources to compare?
-5. Which system has the highest user / meta score ratio?
+A. How has the average rating changed over time vs number of games released/reviewed?
+B. For games that are released on multiple systems, which system has the highest average rating?
+C. Using Sentiment Analysis, what game summary is most common? What game summary gets the best reviews?
+D. Can I add other video game review sources to compare?
+E. Which system has the highest user / meta score ratio?
 
 ### Data Collection
 I would like to show my appreciation to Henry Luin for their scraping script used in this project. This script allowed me to pull the relevant data from Metacritic into a pandas dataframe. [Here is a link to Henry's Python scraper script.](https://github.com/henrylin03/video-games/blob/main/scraper.py)  
@@ -126,6 +126,15 @@ ALTER TABLE video_game_reviews
 ALTER COLUMN release_date TYPE DATE USING release_date::DATE;
 ```
 
+Next, extract the release year as another field from the release date
+```SQL
+ALTER TABLE video_game_reviews
+ADD COLUMN release_year INTEGER;
+
+UPDATE video_game_reviews
+SET release_year = EXTRACT(YEAR FROM release_date);
+```
+
 #### Summary of Cleaned Data
 Now that the data has been cleaned, we can get some headline figures:
 
@@ -137,6 +146,20 @@ Below are the top 20 video games ordered by Metascore:
 
 Below are the top 20 video games ordered by their user score:
 ![image](https://github.com/TupperwareBox/VideoGameCriticReview/blob/8044269e9756ed0daac9e860e8320f638ff5b8cf/Images/Cleaned%20Top%2020%20by%20user%20score.png)
+
+### Data Exploration
+
+#### Insight A: How has the average rating changed over time vs number of games released/reviewed?
+For this insight, I need to create a table that shows the mean scores for each release year as well as the number of video games released:
+```SQL
+CREATE TABLE A1_mean_user_scores_by_release_year AS
+SELECT release_year, AVG(user_score) As mean_user_score, AVG(metascore) / 10 As mean_metascore, COUNT(idn) As count_releases
+FROM video_game_reviews
+GROUP BY release_year
+ORDER BY release_year ASC;
+```
+#### Insight B: Platform Comparison for Games Released on Multiple Systems
+
 
 ### Analysis & Insights
 
