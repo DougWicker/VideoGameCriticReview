@@ -6,11 +6,10 @@ This is an insight into the data collected from Metacritic regarding video game 
 ### Potential Insights
 Below is a list of potential insights that could be satisfied by reviewing this dataset:
 
-A. How has the average rating changed over time vs number of games released/reviewed?
-B. For games that are released on multiple systems, which system has the highest average rating?
-C. Using Sentiment Analysis, what game summary is most common? What game summary gets the best reviews?
-D. Can I add other video game review sources to compare?
-E. Which system has the highest user / meta score ratio?
+A. How do the average scores of the platforms compare? How does the average score of handheld console games compare to to those of home consoles and PC games? How do the metascores compare against the user scores? 
+B. How has the average review score changed over time vs number of games released/reviewed?  
+C. For games that are released on multiple platforms, which platform has the highest average rating?  
+D. Can I determine the most popular genres based of the video game descriptions? 
 
 ### Data Collection
 I would like to show my appreciation to Henry Luin for their scraping script used in this project. This script allowed me to pull the relevant data from Metacritic into a pandas dataframe. [Here is a link to Henry's Python scraper script.](https://github.com/henrylin03/video-games/blob/main/scraper.py)  
