@@ -7,7 +7,7 @@ This is an insight into the data collected from Metacritic regarding video game 
 Below is a list of potential insights that could be satisfied by reviewing this dataset:
 
 #### A. Comparison of average Metascore (approved critic score) against User Score.
-How do user scores compare to metascores (critic scores) for different games? Are there any notable differences between the two, and do certain genres or platforms show greater divergence in user and critic ratings?  
+How do user scores compare to Metascores (critic scores) for different games? Are there any notable differences between the two, and do certain genres or platforms show greater divergence in user and critic ratings?  
 Data required - Game name, Metascore, User Score.
 
 #### B. Comparison of Average Scores across Platforms:
