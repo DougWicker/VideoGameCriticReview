@@ -6,10 +6,33 @@ This is an insight into the data collected from Metacritic regarding video game 
 ### Potential Insights
 Below is a list of potential insights that could be satisfied by reviewing this dataset:
 
-A. How do the average scores of the platforms compare? How does the average score of handheld console games compare to to those of home consoles and PC games? How do the metascores compare against the user scores? 
-B. How has the average review score changed over time vs number of games released/reviewed?  
-C. For games that are released on multiple platforms, which platform has the highest average rating?  
-D. Can I determine the most popular genres based of the video game descriptions? 
+#### A. Comparison of average Metascore (approved critic score) against User Score.
+How do user scores compare to metascores (critic scores) for different games? Are there any notable differences between the two, and do certain genres or platforms show greater divergence in user and critic ratings?  
+Data required - Game name, Metascore, User Score.
+
+#### B. Comparison of Average Scores across Platforms:
+How do the average review scores across different gaming platforms and platform types (i.e. handheld consoles, home consoles and PC) compare?  
+Data required - Game name, Metascore, User Score, Platform, Platform Type.
+
+#### C. Platform Reception for Multi-Platform Games:
+For games that are released on multiple platforms, which platform has the highest average rating, and how does this analysis shed light on platform preferences among players and the impact of different platforms on game performance and reception?  
+Data required - Game name (games that are released on multiple platforms), Metascore, User Score, Platform, Platform Type.
+
+#### D. Evolution of Review Scores over Time:
+How does the correlation between average review scores over time and the number of games released over time provide valuable insights to identify trends, patterns, and potential factors influencing game reception in the gaming industry?  
+Data required - Game name, Metascore, User Score, Release Date.
+
+#### E. Impact of Release Date on Review Scores:
+Is there a correlation between the release date of a game and its review scores? Do games released during specific time periods tend to receive higher or lower review scores?  
+Data required - Game name, Metascore, User Score, Release Date.
+
+#### F. Genre Popularity from Game Descriptions:
+How can the analysis of video game descriptions using natural language processing techniques help identify the most popular genres among players? What valuable insights into the preferences and interests of gamers can be obtained by extracting key themes and characteristics from these descriptions? Which game genres tend to receive the highest review scores on average? Are there any particular genres that consistently perform well or poorly in terms of critical and user reception?  
+Data required - Game name, Description (to determine genre using natural language processing), Metascore, User Score, Release Date.
+
+#### G. Platform-Specific Game Preferences:
+Are there platform-specific trends in game preferences among users? Do certain platforms attract different types of games, and do these games perform differently in terms of review scores?  
+Data required - Game name, Description (to determine genre using natural language processing), Metascore, User Score, Release Date.
 
 ### Data Collection
 I would like to show my appreciation to Henry Luin for their scraping script used in this project. This script allowed me to pull the relevant data from Metacritic into a pandas dataframe. [Here is a link to Henry's Python scraper script.](https://github.com/henrylin03/video-games/blob/main/scraper.py)  
